@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{% load crispy_forms_tags %}
+{% block content%}
+
+
+{% if request.user == user %}
+    <form method="POST" action="" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{user_form|crispy}}
+        {{form|crispy}}
+        <br>
+        <button type="submit" >Update</button>    
+    </form>
+{%endif%}
+{% endblock content%}
+

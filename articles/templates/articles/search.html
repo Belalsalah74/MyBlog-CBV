@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+        
+        {%for article in qs%}
+        
+        <a href="{{article.get_absolute_url}}">
+
+            <h4>{{article}}</h1></a>
+        {%empty%}
+        <p>No results please enter a valid search</p>
+        {%endfor%}
+        
+{% endblock content %}

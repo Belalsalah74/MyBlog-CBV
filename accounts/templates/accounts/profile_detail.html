@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+   <br><img style="float:left;margin:5px" src="{{object.image.url}}">
+
+ {% if object.user == request.user %}<h2>Welcome {{object.user}}</h2>
+
+<a href="{% url 'accounts:profile-update' user.profile.pk %}">Update profile</a>
+<br>
+<a href="{% url 'accounts:password-change' user.id %}">Change Password</a><br>
+   
+{% endif %}
+   
+
+
+  
+
+
+    <h2>{% if object.user == request.user %}Your {% else %}{{object.user.username}}{% endif %} articles</h2>
+
+    {% for article in object.user.articles.all %}
+       <p><a href="{{article.get_absolute_url}}">{{article.title}}</a></p>
+        {%empty%}
+
+            <p>{% if object.user == request.user %}You have {% else %}{{object.user.username}} has {% endif %}  no articles yet</p>
+
+    {% endfor %}
+
+{% endblock content %}
+
+

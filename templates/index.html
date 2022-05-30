@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Homepage{% endblock title %}
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+            <h1>Welcome {{request.user.username}}</h1>
+    {% else %}
+            <h1>Welcome</h1> <a href="{% url 'accounts:register' %}">Register now!</a>
+    {% endif %}
+
+
+    <h2>Latest articles</h2>
+
+        {% for article in articles  %}
+            <a href="{% url 'articles:article-detail' article.slug %}"  <h3> {{article.title}}</h3></a>
+
+
+            {% if article.content %}
+                  <div class="content">
+                 {{article.content|truncatechars:50}}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+
+{% endblock content %}

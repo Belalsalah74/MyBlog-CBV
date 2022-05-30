@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{% block content %}
+    {% if request.user == object.user %}
+<h1>Do you want to delete this comment ?</h1>
+
+<form method="POST" >{%csrf_token%}
+<button type="submit"><a style="color: black;text-decoration: none;">Delete</a></button>
+</form>
+
+{%else%}
+<h3>Access Denied</h3>
+{%endif%}
+{% endblock content %}
